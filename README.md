@@ -1,10 +1,23 @@
 # pix2pix-tensorflow
 
-# Result
+# Result on Validation Set
+## Facades
+*No* | *Domain A* | *Domain B* | *Output A* |
+:-- | :---: | :---: |:---: |
+1|<img src = 'figs/facades/cmp_x0001.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0001.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0000.png' height = '200px' width = '200px'> |
+2|<img src = 'figs/facades/cmp_x0004.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0004.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0003.png' height = '200px' width = '200px'> |
+3|<img src = 'figs/facades/cmp_x0005.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0005.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0004.png' height = '200px' width = '200px'> |
+4|<img src = 'figs/facades/cmp_x0006.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0006.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0005.png' height = '200px' width = '200px'> |
+5|<img src = 'figs/facades/cmp_x0008.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0008.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0007.png' height = '200px' width = '200px'> |
+6|<img src = 'figs/facades/cmp_x0009.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0009.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0008.png' height = '200px' width = '200px'> |
+7|<img src = 'figs/facades/cmp_x0010.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0010.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0009.png' height = '200px' width = '200px'> |
+8|<img src = 'figs/facades/cmp_x0007.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0007.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0006.png' height = '200px' width = '200px'> |
+9|<img src = 'figs/facades/cmp_x0002.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0002.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0001.png' height = '200px' width = '200px'> |
+10|<img src = 'figs/facades/cmp_x0003.jpg' height = '200px' width = '200px'> | <img src = 'figs/facades/cmp_x0003.png' height = '200px' width = '200px'> | <img src = 'figs/facades/im_0002.png' height = '200px' width = '200px'> |
 
 ## Shoes
 
-*domain A and B* | *Output B* | *domain A and B* | *Output B* |
+*Domain A and B* | *Output B* | *Domain A and B* | *Output B* |
 :---: | :---: |:---: | :---: |
 <img src = 'figs/shoes/1_AB.jpg' height = '130px'> | <img src = 'figs/shoes/2/im_1_AB.png' height = '130px'> | <img src = 'figs/shoes/4_AB.jpg' height = '130px'> | <img src = 'figs/shoes/2/im_4_AB.png' height = '130px'> |
 <img src = 'figs/shoes/39_AB.jpg' height = '130px'> | <img src = 'figs/shoes/2/im_39_AB.png' height = '130px'> | <img src = 'figs/shoes/24_AB.jpg' height = '130px'> | <img src = 'figs/shoes/2/im_24_AB.png' height = '130px'> |
@@ -14,7 +27,7 @@
 
 ## Maps
 
-*domain A and B* | *Output A* | *Output B*
+*Domain A and B* | *Output A* | *Output B*
 :---: | :---: | :---: |
 <img src = 'figs/maps/1.jpg' height = '210px'> | <img src = 'figs/maps/2/im_1.png' height = '210px'> | <img src = 'figs/maps/1/im_1.png' height = '210px'>
 <img src = 'figs/maps/100.jpg' height = '210px'> | <img src = 'figs/maps/2/im_100.png' height = '210px'> | <img src = 'figs/maps/1/im_100.png' height = '210px'>
