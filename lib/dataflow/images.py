@@ -82,16 +82,16 @@ class ImagePair(object):
             im_list = []
             for i in range(0, 2):
                 im_path = self._im_list[i][k]
-                drive, path_and_file = os.path.splitdrive(im_path)
-                path, file = os.path.split(path_and_file)
-                im_name, ext = os.path.splitext(file)
-                self.batch_file_name[i].append(im_name)
+                # drive, path_and_file = os.path.splitdrive(im_path)
+                # path, file = os.path.split(path_and_file)
+                # im_name, ext = os.path.splitext(file)
+                self.batch_file_name[i].append(im_path)
                 # print(im_path)
                 im = load_image(im_path, read_channel=None, pf=self._pf[i])
                 im_list.append(im)
             im_list = self._pair_pf(im_list)
             for idx, im in enumerate(im_list):
-                data_list[idx].extend(im)
+                data_list[idx].append(im)
         for i in range(0, 2):   
             data_list[i] = np.array(data_list[i])
         return data_list

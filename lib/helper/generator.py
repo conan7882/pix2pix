@@ -3,6 +3,7 @@
 # File: generator.py
 # Author: Qian Ge <geqian1001@gmail.com>
 
+import os
 import numpy as np
 import scipy.misc
 import tensorflow as tf
@@ -43,6 +44,9 @@ class Generator(object):
                 feed_dict={self._g_model.image: im})
             if save_path is not None:
                 for im, im_name in zip(result_image, file_names):
+                    drive, path_and_file = os.path.splitdrive(im_name)
+                    path, file = os.path.split(path_and_file)
+                    im_name, ext = os.path.splitext(file)
                     scipy.misc.imsave('{}im_{}.png'.format(save_path, im_name),
                                       np.squeeze(im))
                     print('Result image {}im_{}.png saved!'.format(save_path, im_name))

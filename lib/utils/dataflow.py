@@ -39,10 +39,9 @@ def load_image(im_path, read_channel=None, pf=identity):
 
     if len(im.shape) < 3:
         im = pf(im)
-        im = np.reshape(im, [1, im.shape[0], im.shape[1], 1])
+        im = np.reshape(im, [im.shape[0], im.shape[1], 1])
     else:
         im = pf(im)
-        im = np.reshape(im, [1, im.shape[0], im.shape[1], im.shape[2]])
     return im
 
 def get_file_list(file_dir, file_ext, sub_name=None):
