@@ -10,6 +10,7 @@ import scipy.misc
 
 import lib.utils.utils as utils
 
+
 def identity(inputs):
     return inputs
 
@@ -43,18 +44,6 @@ def load_image(im_path, read_channel=None, pf=identity):
     else:
         im = pf(im)
     return im
-
-def get_file_list(file_dir, file_ext, sub_name=None):
-    re_list = []
-
-    if sub_name is None:
-        return np.array([os.path.join(root, name)
-            for root, dirs, files in os.walk(file_dir) 
-            for name in sorted(files) if name.endswith(file_ext)])
-    else:
-        return np.array([os.path.join(root, name)
-            for root, dirs, files in os.walk(file_dir) 
-            for name in sorted(files) if name.endswith(file_ext) and sub_name in name])
 
 _RNG_SEED = None
 

@@ -42,9 +42,11 @@ def load_data():
         train_data, test_data = loader.load_maps(batch_size=1, reverse=True)
     elif FLAGS.dataset == 'shoes':
         train_data, test_data = loader.load_shoes(batch_size=1)
-    else:
-        FLAGS.dataset = 'facades'
+    elif FLAGS.dataset == 'facades':
+        # FLAGS.dataset = 'facades'
         train_data, test_data = loader.load_facades(batch_size=1)
+    else:
+        raise ValueError('No dataset {}!'.format(FLAGS.dataset))
 
     return train_data, test_data, FLAGS.dataset
 
@@ -71,7 +73,7 @@ def train():
     with tf.Session(config=sessconfig) as sess:
         sess.run(tf.global_variables_initializer())
 
-        for epoch_id in range(100):
+        for epoch_id in range(200):
             trainer.train_epoch(sess, keep_prob=0.5, summary_writer=writer)
             generator.generate_step(sess, test_data, summary_writer=writer)
             saver.save(sess, '{}epoch_{}'.format(save_path, epoch_id))

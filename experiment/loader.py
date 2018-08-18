@@ -16,11 +16,13 @@ from lib.dataflow.images import ImagePair
 def im_preprocess(im_pair):
     h = int(np.ceil(np.random.uniform(1e-2, 286 - 256)))
     w = int(np.ceil(np.random.uniform(1e-2, 286 - 256)))
-    im_pair = [im[:, h: h + 256, w: w + 256, :] for im in im_pair]
+    # im_pair = [im[:, h: h + 256, w: w + 256, :] for im in im_pair]
+    im_pair = [im[h: h + 256, w: w + 256, :] for im in im_pair]
 
     # flip
     if np.random.random() > 0.5:
-        im_pair = [im[:,:,::-1,:] for im in im_pair]
+        # im_pair = [im[:,:,::-1,:] for im in im_pair]
+        im_pair = [im[:,::-1,:] for im in im_pair]
 
     return im_pair
 
