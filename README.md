@@ -13,6 +13,7 @@ Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.
 - [Scipy](https://www.scipy.org/)
 
 ## Implementation Details
+- dropout
 
 ## Result on Validation Set
 ### Facades
