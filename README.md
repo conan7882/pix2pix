@@ -14,6 +14,7 @@ Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.
 
 ## Implementation Details
 - dropout
+- 100 * l1 loss
 
 ## Result on Validation Set
 ### Facades
