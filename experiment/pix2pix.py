@@ -75,7 +75,7 @@ def train():
 
         for epoch_id in range(200):
             trainer.train_epoch(sess, keep_prob=0.5, summary_writer=writer)
-            generator.generate_step(sess, test_data, summary_writer=writer)
+            generator.generate_step(sess, test_data, keep_prob=0.5, summary_writer=writer)
             saver.save(sess, '{}epoch_{}'.format(save_path, epoch_id))
         saver.save(sess, '{}epoch_{}'.format(save_path, epoch_id))
 
@@ -96,7 +96,7 @@ def test():
     with tf.Session(config=sessconfig) as sess:
         sess.run(tf.global_variables_initializer())
         saver.restore(sess, '{}epoch_{}'.format(save_path, FLAGS.load))
-        generator.generate_epoch(sess, test_data, save_path=save_path)
+        generator.generate_epoch(sess, test_data, keep_prob=0.5, save_path=save_path)
 
 
 if __name__ == '__main__':

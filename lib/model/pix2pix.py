@@ -39,7 +39,7 @@ class Pix2Pix(object):
 
     def _create_test_input(self):
         self.lr = tf.placeholder(tf.float32, name='lr')
-        self.keep_prob = 1.0
+        self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
         self.image = tf.placeholder(
             tf.float32,
             name='image',

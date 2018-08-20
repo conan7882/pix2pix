@@ -16,7 +16,7 @@ class Generator(object):
         self._test_summary_op = generate_model.get_test_summary()
         self.global_step = 0
 
-    def generate_step(self, sess, dataflow, summary_writer=None):
+    def generate_step(self, sess, dataflow, keep_prob=1.0, summary_writer=None):
         self.global_step += 1
         batch_data = dataflow.next_batch_dict()
         im = batch_data['input']
@@ -25,14 +25,15 @@ class Generator(object):
         cur_summary = sess.run(
             self._test_summary_op, 
             feed_dict={
+                       self._g_model.keep_prob: keep_prob,
                        self._g_model.image: im,
                        self._g_model.label: label})
         if summary_writer is not None:
             summary_writer.add_summary(cur_summary, self.global_step)
 
-    def generate_epoch(self, sess, test_data, save_path=None):
+    def generate_epoch(self, sess, test_data, keep_prob=1.0, save_path=None):
+        
         test_data.setup(epoch_val=0, batch_size=1)
-
         im_id = 0
         while test_data.epochs_completed < 1:
             batch_data = test_data.next_batch_dict()
@@ -41,7 +42,7 @@ class Generator(object):
 
             result_image = sess.run(
                 self._g_model.layers['fake'], 
-                feed_dict={self._g_model.image: im})
+                feed_dict={self._g_model.image: im, self._g_model.keep_prob: keep_prob})
             if save_path is not None:
                 for im, im_name in zip(result_image, file_names):
                     drive, path_and_file = os.path.splitdrive(im_name)
