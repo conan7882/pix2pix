@@ -8,11 +8,13 @@ Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.
 
 ## Requirements
 - Python 3.3+
-- [Tensorflow 1.8](https://www.tensorflow.org/)
-- [numpy](http://www.numpy.org/)
+- [Tensorflow 1.9+](https://www.tensorflow.org/)
+- [Numpy](http://www.numpy.org/)
 - [Scipy](https://www.scipy.org/)
 
 ## Implementation Details
+- dropout
+- 100 * l1 loss
 
 ## Result on Validation Set
 ### Facades
