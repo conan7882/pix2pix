@@ -27,7 +27,7 @@ elif platform.node() == 'arostitan':
     SAVE_PATH = '/home/qge2/workspace/data/out/pix2pix/'
 else:
     # DATA_PATH = 'E://Dataset//MNIST//'
-    SAVE_PATH = 'E:/tmp/pix2pix/'
+    SAVE_PATH = 'E:/GITHUB/workspace/CNN/pix2pix/'
     # RESULT_PATH = 'E:/tmp/ram/trans/result/'
 
 def test_im_normalize(im):
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         shuffle=False,
         # pair_pf=im_preprocess
         )
-    test_data.setup(epoch_val=0, batch_size=10)
+    test_data.setup(epoch_val=0, batch_size=20)
 
     model = Pix2Pix(x_n_channel=3, y_n_channel=3)
     model.create_model()
@@ -116,11 +116,11 @@ if __name__ == '__main__':
                                     model.image: batch_data['input'],
                                     model.label: batch_data['label']})
 
-                sess.run(train_g_op, 
-                         feed_dict={model.lr: 0.0002,
-                                    model.keep_prob: 0.5,
-                                    model.image: batch_data['input'],
-                                    model.label: batch_data['label']})
+                # sess.run(train_g_op, 
+                #          feed_dict={model.lr: 0.0002,
+                #                     model.keep_prob: 0.5,
+                #                     model.image: batch_data['input'],
+                #                     model.label: batch_data['label']})
 
                 g_loss, d_loss, cur_summary = sess.run(
                     [g_loss_op, d_loss_op, train_summary_op],
@@ -141,7 +141,7 @@ if __name__ == '__main__':
                                    model.image: batch_data['input'],
                                    model.label: batch_data['label']})
                     writer.add_summary(test_summary, i)
-                print('step: {}, g_loss: {}, d_loss: {}'.format(i, g_loss, d_loss))
+                print('step: {}, g_loss: {:0.2f}, d_loss: {:0.2f}'.format(i, g_loss, d_loss))
 
         if FLAGS.test:
             saver.restore(sess, '{}step_{}-{}'.format(SAVE_PATH, 34200, 34200))

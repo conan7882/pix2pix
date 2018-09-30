@@ -122,15 +122,17 @@ class Pix2Pix(BaseModel):
                 labels=tf.ones_like(logits_d_fake),
                 logits=logits_d_fake,
                 name='g_fake')
-            l1_loss = tf.losses.absolute_difference(
-                labels=self.label,
-                predictions=self.layers['fake'],
-                weights=1.0,
-                scope='l1',
-                # loss_collection=tf.GraphKeys.LOSSES,
-                # reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
-                )
-        return tf.reduce_mean(loss_fake) + 100.0 * tf.reduce_mean(l1_loss)
+            l1_loss = tf.reduce_mean(
+                tf.abs(self.label - self.layers['fake']), name='l1')
+            # l1_loss = tf.losses.absolute_difference(
+            #     labels=self.label,
+            #     predictions=self.layers['fake'],
+            #     weights=1.0,
+            #     scope='l1',
+            #     # loss_collection=tf.GraphKeys.LOSSES,
+            #     # reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
+            #     )
+        return tf.reduce_mean(loss_fake) + 100.0 * l1_loss
 
     def _generator(self, x_inputs):
         with tf.variable_scope('generator') as scope:
@@ -212,15 +214,15 @@ class Pix2Pix(BaseModel):
 
                 fc_out = layers.conv(
                     self.layers['cur_input'],
-                    filter_size=1,
+                    filter_size=4,
                     out_dim=1,
                     name='fc',
                     stride=1,
                     init_w = tf.random_normal_initializer(stddev=INIT_W_STD),
                     init_b = tf.zeros_initializer(),
                     nl=tf.identity)
-                patch_avg = layers.global_avg_pool(fc_out, name='gap')
+                # patch_avg = layers.global_avg_pool(fc_out, name='gap')
 
-                self.layers['discrimin_logits'] = patch_avg
-                self.layers['cur_input'] = patch_avg
-                return patch_avg
+                self.layers['discrimin_logits'] = fc_out
+                self.layers['cur_input'] = fc_out
+                return fc_out
