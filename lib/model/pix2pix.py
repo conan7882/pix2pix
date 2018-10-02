@@ -65,8 +65,11 @@ class Pix2Pix(object):
             var_list = tf.trainable_variables(scope=var_scope)
             grads = tf.gradients(loss, var_list)
 
-            return opt.apply_gradients(zip(grads, var_list),
-                                       name='train_{}'.format(name))
+            update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+            with tf.control_dependencies(update_ops):
+                train_op = opt.apply_gradients(
+                    zip(grads, var_list), name='train_{}'.format(name))
+            return train_op
 
     def get_loss(self, name):
         assert name in ['G', 'D']
