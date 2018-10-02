@@ -131,25 +131,13 @@ class Pix2Pix(object):
                 labels=tf.ones_like(logits_d_fake),
                 logits=logits_d_fake,
                 name='g_fake')
-<<<<<<< HEAD
-            l1_loss = tf.reduce_mean(
-                tf.abs(self.label - self.layers['fake']), name='l1')
-            # l1_loss = tf.losses.absolute_difference(
-            #     labels=self.label,
-            #     predictions=self.layers['fake'],
-            #     weights=1.0,
-            #     scope='l1',
-            #     # loss_collection=tf.GraphKeys.LOSSES,
-            #     # reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
-            #     )
-        return tf.reduce_mean(loss_fake) + 100.0 * l1_loss
-=======
+
             g_loss = tf.reduce_mean(loss_fake)
             l1_loss = tf.reduce_mean(
                 tf.abs(self.label - self.layers['fake']), name='l1')
 
         return g_loss + 100.0 * l1_loss, g_loss, l1_loss
->>>>>>> 2b3f4cce6724d219f2af142f381d2dd425ffda7f
+
 
     def _generator(self, x_inputs):
         with tf.variable_scope('generator', reuse=tf.AUTO_REUSE):
@@ -232,17 +220,12 @@ class Pix2Pix(object):
                     init_w=tf.random_normal_initializer(stddev=INIT_W_STD),
                     init_b=tf.zeros_initializer(),
                     nl=tf.identity)
-<<<<<<< HEAD
-                # patch_avg = layers.global_avg_pool(fc_out, name='gap')
-=======
->>>>>>> 2b3f4cce6724d219f2af142f381d2dd425ffda7f
 
                 self.layers['discrimin_logits'] = fc_out
                 self.layers['cur_input'] = fc_out
                 return fc_out
-<<<<<<< HEAD
-=======
+
 
     def set_is_training(self, is_training=True):
         self.is_training = is_training
->>>>>>> 2b3f4cce6724d219f2af142f381d2dd425ffda7f
+
